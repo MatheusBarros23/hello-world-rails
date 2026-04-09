@@ -4,7 +4,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE: ghcr.io/matheusbarros23/${{ github.repository_name }}
+  IMAGE: ghcr.io/matheusbarros23/hello-world-rails
 
 jobs:
   test:
