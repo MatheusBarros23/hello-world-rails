@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     needs: build-and-push
-    runs-on: deploy
+    runs-on: deploy-cluster
     steps:
       - uses: actions/checkout@v6
 
