@@ -39,7 +39,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.IMAGE }}:latest
             ${{ env.IMAGE }}:sha-${{ github.sha }}
 
   deploy:
@@ -51,6 +50,9 @@ jobs:
       - name: Set up kubectl
         uses: azure/setup-kubectl@v5
 
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+
       - name: Write kubeconfig
         run: |
           mkdir -p $HOME/.kube
@@ -58,5 +60,7 @@ jobs:
 
       - name: Deploy to cluster
         run: |
-          kubectl apply -f k8s/
-          kubectl rollout status deployment/hello-world --timeout=120s
+          helm upgrade --install hello-world ./helm/hello-world \
+            --set image.tag=sha-${{ github.sha }} \
+            --set-string appVersion=sha-${{ github.sha }} \
+            --wait --timeout=120s

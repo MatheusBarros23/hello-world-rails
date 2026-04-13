@@ -1,0 +1,13 @@
+image:
+  repository: ghcr.io/matheusbarros23/hello-world-rails
+  tag: latest
+  pullPolicy: Always
+
+replicaCount: 2
+
+service:
+  port: 80
+  targetPort: 3000
+
+ingress:
+  host: localhost
