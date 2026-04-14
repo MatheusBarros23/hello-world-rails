@@ -81,7 +81,7 @@ jobs:
 
   trigger-versioning:
     needs: [deploy, build-and-push]
-    uses: MatheusBarros23/platform-ops/versioning.yml@main
+    uses: MatheusBarros23/platform-ops/.github/workflows/versioning.yml@main
     with:
       source_repo: ${{ github.event.repository.name }}
       source_ref: ${{ github.ref_name }}
